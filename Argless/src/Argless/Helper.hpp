@@ -2,7 +2,7 @@
 #include <iostream>
 #include <variant>
 
-#include "Argless/Parser/Parser.hpp"
+#include "Parser/Parser.hpp"
 #include "Core.hpp"
 #include "Exception.hpp"
 

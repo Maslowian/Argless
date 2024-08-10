@@ -1,4 +1,4 @@
-#ifndef ARGLESS_CORE_HPP
+#pragma once
 #define ARGLESS_CORE_HPP
 
 #define _ARGLESS_BEGIN namespace maslowian { namespace argless {
@@ -72,6 +72,4 @@
 #define _ARGLESS_HAS_CHAR8_T 1
 #else
 #define _ARGLESS_HAS_CHAR8_T 0
-#endif
-
 #endif

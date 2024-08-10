@@ -1,5 +1,5 @@
 #pragma once
-#include "Argless/Core.hpp"
+#include "Core.hpp"
 
 _ARGLESS_PRIVATE_BEGIN
 

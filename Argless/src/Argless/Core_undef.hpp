@@ -1,4 +1,5 @@
 #ifdef ARGLESS_CORE_HPP
+#undef ARGLESS_CORE_HPP
 
 #undef _ARGLESS_BEGIN
 #undef _ARGLESS_END
