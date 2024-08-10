@@ -11,6 +11,15 @@ class Array
 	template <typename T, size_t N>
 	struct is_array<std::array<T, N>> : std::true_type {};
 
+	template <typename T>
+	struct array_info;
+	template <typename T, size_t N>
+	struct array_info<std::array<T, N>>
+	{
+		using value_type = T;
+		static constexpr size_t size = N;
+	};
+
 public:
 	template <typename T>
 	struct is_t
@@ -37,7 +46,7 @@ public:
 	template <typename T, typename CharT, std::enable_if_t<is_t<T>::value, int> = 0>
 	static std::basic_string<CharT> get_description(const std::function<std::vector<std::basic_string<CharT>>(size_t)>& enum_info)
 	{
-		return _ARGLESS_CHAR(CharT, '<') + get_type_description<typename T::value_type, CharT>(enum_info) + _ARGLESS_TEXT(CharT, ">[") + std::to_string(T::size_type) + _ARGLESS_CHAR(CharT, ']');
+		return _ARGLESS_CHAR(CharT, '<') + get_type_description<typename T::value_type, CharT>(enum_info) + _ARGLESS_TEXT(CharT, ">[") + std::to_string(array_info<T>::size) + _ARGLESS_CHAR(CharT, ']');
 	}
 };
 

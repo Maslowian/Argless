@@ -183,11 +183,11 @@ public:
 					add_value = [this, &result](std::shared_ptr<void> value)
 					{
 						if (!result.empty_rule_value.has_value())
-							result.empty_rule_value = _ARGLESS_PRIVATE ResultValue(m_data.empty_rule.value().type_hash);
+							result.empty_rule_value = _ARGLESS_PRIVATE ResultValue(this->m_data.empty_rule.value().type_hash);
 						result.empty_rule_value->values.push_back(value);
 					};
 
-					rule_value_size = [this, &result]()
+					rule_value_size = [&result]()
 					{
 						if (!result.empty_rule_value.has_value())
 							return size_t(0);

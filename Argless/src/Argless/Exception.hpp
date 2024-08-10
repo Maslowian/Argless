@@ -22,7 +22,7 @@ template <typename CharT>
 struct ArglessException : public std::exception
 {
 	ArglessException(ArglessExceptionType type, std::variant<std::monostate, std::basic_string<CharT>, NoRule> rule_name, Args<CharT> args, const ArglessData<CharT>& data, std::optional<ArgType> arg_type = std::nullopt)
-		: type(type), args(std::move(args)), rule_name(std::move(rule_name)), data(data), arg_type(arg_type)
+		: type(type), rule_name(std::move(rule_name)), args(std::move(args)), data(data), arg_type(arg_type)
 	{}
 
 	const char* what() const noexcept override

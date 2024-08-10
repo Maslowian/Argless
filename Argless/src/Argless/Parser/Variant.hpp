@@ -63,7 +63,7 @@ public:
 	template <typename T, typename CharT, std::enable_if_t<is_t<T>::value && !is_monostate<T>::value, int> = 0>
 	static std::basic_string<CharT> get_description(const std::function<std::vector<std::basic_string<CharT>>(size_t)>& enum_info)
 	{
-		return _ARGLESS_CHAR(CharT, '[') + VariantParser<CharT, T, std::variant_size_v<T>>::get_type_description(enum_info) + _ARGLESS_CHAR(CharT, ']');
+		return _ARGLESS_CHAR(CharT, '[') + VariantDescription<CharT, T, std::variant_size_v<T>>::get_simple_type_description(enum_info) + _ARGLESS_CHAR(CharT, ']');
 	}
 
 	template <typename T, typename CharT, std::enable_if_t<is_monostate<T>::value, int> = 0>
@@ -107,7 +107,7 @@ private:
 	{
 		static std::basic_string<CharT> get_simple_type_description(const std::function<std::vector<std::basic_string<CharT>>(size_t)>& enum_info)
 		{
-			return get_type_description<std::variant_alternative_t<I - 1, T>, CharT>(enum_info) + _ARGLESS_CHAR(CharT, '|') + VariantParser<CharT, T, I - 1>::get_simple_type_description(enum_info);
+			return get_type_description<std::variant_alternative_t<I - 1, T>, CharT>(enum_info) + _ARGLESS_CHAR(CharT, '|') + VariantDescription<CharT, T, I - 1>::get_simple_type_description(enum_info);
 		}
 	};
 

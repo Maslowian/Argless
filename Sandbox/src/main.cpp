@@ -24,6 +24,7 @@ int _main(int argc, const char** argv)
 	argless.set_rule<void>("--flag", { "-f" });
 	argless.set_rule<std::optional<RuleBasicString<char>>>("--help", { "help", "-h", "?" });
 	argless.set_rule<RuleVector<std::string>>(nullptr);
+	argless.set_rule<std::variant<int, std::tuple<std::array<char, 3>, float, bool, std::monostate, std::optional<std::string>>>>("-v", { "--v" });
 
 	auto opt_result = argless.parse(argc, argv);
 	if (!opt_result)
@@ -82,7 +83,7 @@ int _main(int argc, const char** argv)
 
 int main()
 {
-	const char* args[] = { "C:/Windows/System32/Edge.exe", "?", "--flag"};
+	const char* args[] = { "C:/Windows/System32/Edge.exe", "?", "-v"};
 	int argc = sizeof(args) / sizeof(char*);
 
 	_main(argc, reinterpret_cast<const char**>(args));

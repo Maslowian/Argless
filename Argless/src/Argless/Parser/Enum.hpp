@@ -38,7 +38,7 @@ public:
 		auto values = enum_info(typeid(T).hash_code());
 
 		std::basic_string<CharT> result;
-		result += _ARGLESS_CHAR(CharT, '\'');
+		result += _ARGLESS_CHAR(CharT, '[');
 		for (size_t i = 0; i < values.size(); i++)
 		{
 			if (i != 0)

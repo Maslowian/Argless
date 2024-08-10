@@ -92,9 +92,20 @@ public:
 
 		out << _ARGLESS_TEXT(CharT, "Option: ") << rule->first << std::endl;
 
-		auto enum_info = [](size_t enum_hash)-> std::vector<std::basic_string<CharT>> 
+		auto enum_info = [&data](size_t enum_hash)-> std::vector<std::basic_string<CharT>> 
 		{ 
-			return {};
+			auto it = data.enum_rules.find(enum_hash);
+
+			_ARGLESS_ASSERT(it != data.enum_rules.end(), "Enum not found");
+
+			auto& enum_map = it->second.enum_map;
+
+			std::vector<std::basic_string<CharT>> result;
+
+			for (const auto& [name, value] : enum_map)
+				result.push_back(name);
+
+			return result;
 		};
 
 		out << _ARGLESS_TEXT(CharT, "Value type: ") << rule->second.type_description(enum_info) << std::endl;
